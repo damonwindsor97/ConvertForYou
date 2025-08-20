@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+background-color: #1B1B1B;
+}
+
+.app {
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+justify-content: space-between;
+}
+
+.app-content {
+
+}
+
+.indicator {
+    transition: left .4s;
+}
