@@ -6,7 +6,7 @@ import { Select } from '@mui/base/Select';
 import { Option } from '@mui/base/Option';
 import { BarLoader } from 'react-spinners';
 import { GrPowerReset } from "react-icons/gr";
-import { FaLink, FaDownload, FaExternalLinkAlt, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
+import { FaLink, FaDownload, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { MdCloudDownload } from "react-icons/md";
 import { BiLinkExternal } from "react-icons/bi";
 
@@ -374,7 +374,6 @@ function Converter() {
   
     return (
         <div className="max-w-4xl mx-auto z-10">
-          {/* Header Section */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
@@ -385,35 +384,24 @@ function Converter() {
             <p className="text-white/70">Paste your link • Select your options • Click Convert</p>
           </div>
 
-          {/* Main Converter Card */}
-            <div className={`bg-white/10 z-10 overflow-visible backdrop-blur-md rounded-2xl border p-8 transition-all duration-300 ${
-              success ? 'border-green-400/50 shadow-green-400/20' : 'border-white/20'
-            } shadow-2xl overflow-visible`}>
+            <div className={`bg-white/10 z-10 overflow-visible backdrop-blur-md rounded-2xl border p-8 transition-all duration-300 ${success ? 'border-green-400/50 shadow-green-400/20' : 'border-white/20'} shadow-2xl overflow-visible`}>
             
-            {/* Powered By Badge */}
             <div className="flex justify-between items-center mb-6">
               <div className="text-xs text-white/60">
                 Powered by: {( selectedUtility === 10 || selectedUtility === 40 || selectedUtility === 50 || selectedUtility === 60 ) && " ConvertForYou"}
                 {!selectedUtility || !toFormat ? "" : selectedUtility === 20 && toFormat === 'mp3' ? " RapidAPI" : " ConvertForYou"}
               </div>
-              <button 
-                onClick={resetState}
-                className="p-2 text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 group"
-                title="Reset form"
-              >
+              <button onClick={resetState} className="p-2 text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 group" title="Reset form">
                 <GrPowerReset className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300"/>
               </button>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* URL Input & Utility Selection */}
               <div className="space-y-4">
                 <div className="flex flex-col md:flex-row gap-3">
                   <div className="flex-1">
                     <label className="block text-white/80 text-sm font-medium mb-2">Enter URL</label>
-                    <input 
-                      className="w-full bg-white/10 border border-white/20 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-purple-400 focus:bg-white/15 transition-all duration-300 placeholder-white/50" value={url}   onChange={handleUrlChange}  id="linkInput" placeholder="Paste your URL here..."
-                    />
+                    <input className="w-full bg-white/10 border border-white/20 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-purple-400 focus:bg-white/15 transition-all duration-300 placeholder-white/50" value={url}   onChange={handleUrlChange}  id="linkInput" placeholder="Paste your URL here..."/>
                   </div>
                   
                   <div className="md:min-w-[300px] z-10">
@@ -471,7 +459,7 @@ function Converter() {
                   </div>
                 </div>
 
-                {/* Format Selection for YouTube */}
+                {/* YOUTUBE*/}
                 {selectedUtility == 20 && (
                   <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                     <div className='flex items-center space-x-4'>
@@ -501,7 +489,7 @@ function Converter() {
                   </div>
                 )}
 
-                {/* Format Selection for Soundcloud */}
+                {/* SOUNDCLOUD */}
                 {selectedUtility == 40 && (
                   <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                     <div className='flex items-center space-x-4'>
@@ -528,10 +516,7 @@ function Converter() {
                 )}
               </div>
 
-              {/* Convert Button */}
-              <button type="submit" className='w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl disabled:scale-100 disabled:shadow-none flex items-center justify-center space-x-3' 
-                disabled={loading || !url}
-              >
+              <button type="submit" className='w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl disabled:scale-100 disabled:shadow-none flex items-center justify-center space-x-3' disabled={loading || !url}>
                 {loading ? (
                   <>
                     <BarLoader color="#ffffff" width={60} height={4} />
@@ -546,9 +531,8 @@ function Converter() {
               </button>
             </form>
 
-            {/* Status Messages */}
+
             <div className="mt-6 space-y-4">
-              {/* Processing Time Warning */}
               {selectedUtility === 20 && toFormat === 'mp4' && (
                 <div className="flex items-center space-x-3 p-4 bg-yellow-500/20 border border-yellow-400/30 rounded-xl">
                   <FaExclamationTriangle className="w-5 h-5 text-yellow-400 flex-shrink-0" />
@@ -556,7 +540,6 @@ function Converter() {
                 </div>
               )}
 
-              {/* Soundcloud Warning */}
               {selectedUtility === 40 && (
                 <div className="flex items-center space-x-3 p-4 bg-orange-500/20 border border-orange-400/30 rounded-xl">
                   <FaExclamationTriangle className="w-5 h-5 text-orange-400 flex-shrink-0" />
@@ -564,7 +547,6 @@ function Converter() {
                 </div>
               )}
 
-              {/* Error Message */}
               {error && (
                 <div className="flex items-center space-x-3 p-4 bg-red-500/20 border border-red-400/30 rounded-xl">
                   <FaExclamationTriangle className="w-5 h-5 text-red-400 flex-shrink-0" />
@@ -575,7 +557,6 @@ function Converter() {
                 </div>
               )}
 
-              {/* Success Message */}
               {success && (
                 <div className="flex items-center space-x-3 p-4 bg-green-500/20 border border-green-400/30 rounded-xl">
                   <FaCheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
@@ -583,7 +564,6 @@ function Converter() {
                 </div>
               )}
 
-              {/* Shortened URL Result */}
               {tinyURL && (
                 <div className="p-4 bg-white/5 border border-white/20 rounded-xl">
                   <p className="text-white font-bold mb-3 flex items-center space-x-2">

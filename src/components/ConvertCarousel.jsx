@@ -55,18 +55,16 @@ function ConvertCarousel() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 ">
-      {/* Hero Section */}
+
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">Convert Anything,<span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> Instantly</span></h1>
         <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">Choose your conversion type and transform your files with lightning speed. 
           Secure, fast, and completely free.</p>
       </div>
 
-      {/* Tab Navigation */}
+
       <div className="flex justify-center mb-8">
-        <div 
-          role="tablist" aria-label="conversion tools" className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 shadow-2xl"
-        >
+        <div role="tablist" aria-label="conversion tools" className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 shadow-2xl">
           <div className="absolute h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl shadow-lg indicator transition-all duration-300 ease-out"></div>
           
           {tabs.map((tab, index) => {
@@ -74,23 +72,10 @@ function ConvertCarousel() {
             const isActive = activeTab === tab.id;
             
             return (
-              <button
-                key={tab.id}
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={tab.id}
-                id={`tab-${index + 1}`}
-                tabIndex={isActive ? "0" : "-1"}
-                className="relative tab h-12 px-6 md:px-8 rounded-xl transition-all duration-300 ease-out group"
-                onClick={() => setActiveTab(tab.id)}
-              >
+              <button key={tab.id} role="tab" aria-selected={isActive} aria-controls={tab.id} id={`tab-${index + 1}`} tabIndex={isActive ? "0" : "-1"} className="relative tab h-12 px-6 md:px-8 rounded-xl transition-all duration-300 ease-out group" onClick={() => setActiveTab(tab.id)} >
                 <div className="flex items-center space-x-3">
-                  <Icon className={`w-5 h-5 transition-all duration-300 ${
-                    isActive ? 'text-white scale-110' : 'text-white/70 group-hover:text-white group-hover:scale-105'
-                  }`} />
-                  <span className={`font-semibold transition-all duration-300 whitespace-nowrap ${
-                    isActive ? 'text-white' : 'text-white/70 group-hover:text-white'
-                  }`}>
+                  <Icon className={`w-5 h-5 transition-all duration-300 ${isActive ? 'text-white scale-110' : 'text-white/70 group-hover:text-white group-hover:scale-105'}`} />
+                  <span className={`font-semibold transition-all duration-300 whitespace-nowrap ${isActive ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
                     {tab.label}
                   </span>
                 </div>
