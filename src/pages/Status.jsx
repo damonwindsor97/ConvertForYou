@@ -34,14 +34,8 @@ export default function StatusPage() {
     <div className="">
       <Helmet>
         <title>ConvertForYou | Status Page</title>
-        <meta
-          name="description"
-          content="ConvertForYou.com | Free Online Utilities for URLs - Convert MP4, YouTube & Soundcloud to Mp3, shorten URLs, Convert jpg to png and more with Linkify."
-        />
-        <meta
-          name="keywords"
-          content="link, url, shorten, utilities, oasis, youtube, to, mp3, convert, YouTube, YT, MP3, audio, YouTube, link oasis, utils for links, utilities for links, ConvertForYou, linkify, free online, converter, free, online, free online converter, tools, tool, spotify download, Spotify, Soundcloud, download, downloader, image convert, jpg, png, gif, icon, ico"
-        />
+        <meta name="description" content="ConvertForYou.com | Free Online Utilities for URLs - Convert MP4, YouTube & Soundcloud to Mp3, shorten URLs, Convert jpg to png and more with Linkify."/>
+        <meta name="keywords" content="link, url, shorten, utilities, oasis, youtube, to, mp3, convert, YouTube, YT, MP3, audio, YouTube, link oasis, utils for links, utilities for links, ConvertForYou, linkify, free online, converter, free, online, free online converter, tools, tool, spotify download, Spotify, Soundcloud, download, downloader, image convert, jpg, png, gif, icon, ico"/>
         <meta name="author" content="Damon Windsor" />
       </Helmet>
 
@@ -67,7 +61,6 @@ export default function StatusPage() {
           </p>
         </div>
 
-        {/* Overall Status Card */}
         <div className="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl mb-8 overflow-hidden">
           <div className="p-8">
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
@@ -116,7 +109,6 @@ export default function StatusPage() {
           </div>
         </div>
 
-        {/* Service Details */}
         <div className="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl mb-8 overflow-hidden">
           <div className="p-8">
             <div className="flex items-center space-x-3 mb-8">
@@ -125,8 +117,7 @@ export default function StatusPage() {
               </div>
               <h2 className="text-2xl font-bold text-white">Service Details</h2>
             </div>
-            
-            {/* Services Grid */}
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {Object.entries(status).map(([service, serviceStatus]) => {
                 const Icon = getServiceIcon(service);
@@ -167,7 +158,6 @@ export default function StatusPage() {
               })}
             </div>
 
-            {/* Status Legend */}
             <div className="mt-8 p-4 bg-white/5 rounded-xl border border-white/10">
               <h3 className="text-white font-semibold mb-3">Status Legend</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -186,9 +176,9 @@ export default function StatusPage() {
           </div>
         </div>
 
-        {/* Additional Info */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {/* Incident History */}
+   
           <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl p-6">
             <div className="flex items-center space-x-3 mb-4">
               <FaClock className="w-6 h-6 text-yellow-400" />
@@ -209,7 +199,7 @@ export default function StatusPage() {
             </div>
           </div>
 
-          {/* Support Contact */}
+
           <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl p-6">
             <div className="flex items-center space-x-3 mb-4">
               <BiSupport className="w-6 h-6 text-blue-400" />
@@ -222,7 +212,7 @@ export default function StatusPage() {
           </div>
         </div>
 
-        {/* Footer */}
+
         <div className="text-center">
           <div className="bg-white/5 rounded-xl p-4 border border-white/10 inline-block">
             <p className="text-white/60 text-sm">Last updated: <span className="text-white font-semibold">20/08/25 12:08am AEST</span></p>

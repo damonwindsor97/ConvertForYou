@@ -9,18 +9,12 @@ function Terms() {
     <div className="">
       <Helmet>
         <title>ConvertForYou | Terms of Service</title>
-        <meta
-          name="description"
-          content="ConvertForYou.com | Free Online Utilities for URLs - Convert MP4, YouTube & Soundcloud to Mp3, shorten URLs, Convert jpg to png and more with Linkify."
-        />
-        <meta
-          name="keywords"
-          content="link, url, shorten, utilities, oasis, youtube, to, mp3, convert, YouTube, YT, MP3, audio, YouTube, link oasis, utils for links, utilities for links, ConvertForYou, linkify, free online, converter, free, online, free online converter, tools, tool, spotify download, Spotify, Soundcloud, download, downloader, image convert, jpg, png, gif, icon, ico"
-        />
+        <meta name="description"
+          content="ConvertForYou.com | Free Online Utilities for URLs - Convert MP4, YouTube & Soundcloud to Mp3, shorten URLs, Convert jpg to png and more with Linkify."/>
+        <meta name="keywords" content="link, url, shorten, utilities, oasis, youtube, to, mp3, convert, YouTube, YT, MP3, audio, YouTube, link oasis, utils for links, utilities for links, ConvertForYou, linkify, free online, converter, free, online, free online converter, tools, tool, spotify download, Spotify, Soundcloud, download, downloader, image convert, jpg, png, gif, icon, ico"/>
         <meta name="author" content="Damon Windsor" />
       </Helmet>
 
-      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -inset-10 opacity-20">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -29,7 +23,6 @@ function Terms() {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-16">
-        {/* Header Section */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center space-x-4 mb-6">
             <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-2xl">
@@ -37,16 +30,13 @@ function Terms() {
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-white">Terms of Service</h1>
           </div>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-            Please read these terms carefully before using ConvertForYou. By using our services, you agree to comply with these terms and conditions.
-          </p>
+          <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">Please read these terms carefully before using ConvertForYou. By using our services, you agree to comply with these terms and conditions.</p>
         </div>
 
-        {/* Main Content */}
         <div className="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl overflow-hidden">
           <div className="p-8 md:p-12">
             
-            {/* Section 1: Copyright */}
+
             <div className="mb-12">
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-xl flex items-center justify-center">
@@ -56,16 +46,11 @@ function Terms() {
               </div>
               
               <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-                <p className="text-white/90 leading-relaxed">
-                  By using ConvertForYou, you agree to comply with all applicable international copyright laws and regulations. 
-                  You are responsible for ensuring you have the necessary rights or permissions to convert, download, or use any material. 
-                  ConvertForYou does not condone or support copyright infringement and reserves the right to terminate access for users 
-                  who violate intellectual property rights.
-                </p>
+                <p className="text-white/90 leading-relaxed">By using ConvertForYou, you agree to comply with all applicable international copyright laws and regulations. You are responsible for ensuring you have the necessary rights or permissions to convert, download, or use any material. ConvertForYou does not condone or support copyright infringement and reserves the right to terminate access for users who violate intellectual property rights.</p>
               </div>
             </div>
 
-            {/* Section 2: Content Restrictions */}
+    
             <div className="mb-12">
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
@@ -75,10 +60,7 @@ function Terms() {
               </div>
               
               <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-                <p className="text-white/90 leading-relaxed mb-4">
-                  You agree not to use ConvertForYou or any associated platforms to convert, download, distribute, share, store, 
-                  or interact with any of the following types of content:
-                </p>
+                <p className="text-white/90 leading-relaxed mb-4">You agree not to use ConvertForYou or any associated platforms to convert, download, distribute, share, store, or interact with any of the following types of content:</p>
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="bg-red-500/20 rounded-xl p-4 border border-red-400/30">
@@ -101,7 +83,7 @@ function Terms() {
               </div>
             </div>
 
-            {/* Section 3: User Responsibility */}
+
             <div className="mb-12">
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
@@ -111,15 +93,12 @@ function Terms() {
               </div>
               
               <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-                <p className="text-white/90 leading-relaxed">
-                  You are solely responsible for your use of the service and any content you access, convert, or share. 
-                  This includes ensuring compliance with all applicable laws and regulations in your jurisdiction. 
-                  Users must also respect file size limits and usage guidelines to ensure fair access for all users.
+                <p className="text-white/90 leading-relaxed">You are solely responsible for your use of the service and any content you access, convert, or share. This includes ensuring compliance with all applicable laws and regulations in your jurisdiction. Users must also respect file size limits and usage guidelines to ensure fair access for all users.
                 </p>
               </div>
             </div>
 
-            {/* Section 4: Limitation of Liability */}
+
             <div className="mb-12">
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
@@ -130,23 +109,19 @@ function Terms() {
               
               <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
                 <div className="space-y-4">
-                  <p className="text-white/90 leading-relaxed">
-                    ConvertForYou is provided "as is" without warranties of any kind, either express or implied. 
-                    We make no guarantees about the availability, accuracy, or reliability of the service.
+                  <p className="text-white/90 leading-relaxed">ConvertForYou is provided "as is" without warranties of any kind, either express or implied. We make no guarantees about the availability, accuracy, or reliability of the service.
                   </p>
                   
                   <div className="bg-yellow-500/20 rounded-xl p-4 border border-yellow-400/30">
                     <h4 className="text-white font-semibold mb-2">Important Notice</h4>
-                    <p className="text-white/80 text-sm">
-                      We are not liable for any damages, losses, or issues resulting from your use or inability to use the service, 
-                      including but not limited to data loss, conversion errors, or service interruptions.
+                    <p className="text-white/80 text-sm">We are not liable for any damages, losses, or issues resulting from your use or inability to use the service, including but not limited to data loss, conversion errors, or service interruptions.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Section 5: Service Availability */}
+
             <div className="mb-12">
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
