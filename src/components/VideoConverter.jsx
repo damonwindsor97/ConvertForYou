@@ -1,4 +1,4 @@
-
+import axios from 'axios';
 import { useState } from 'react';
 import { Select } from '@mui/base/Select';
 import { Option } from '@mui/base/Option';
@@ -17,6 +17,8 @@ function VideoConverter() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+
+  const [uploadProgress, setUploadProgress] = useState(0); 
   const [progress, setProgress] =useState(0);
   const [progressMessage, setProgressMessage] = useState('')
 
@@ -60,8 +62,6 @@ function VideoConverter() {
   };
 
   const convertVideo = async () => {
-    
-
     if (!file || !toFormat){
       setError("Please select a file and format.");
       alert("Please select a file and format.");
@@ -73,49 +73,48 @@ function VideoConverter() {
       return;
     }
 
-    console.log('file found: ', file.size)
     setLoading(true)
     setError('')
     setSuccess(false)
-    setProgress(0)
+    setUploadProgress(0);
 
     try {
       const formData = new FormData();
-      formData.append('file', file)
+      formData.append('file', file);
 
-      console.log('calling API')
-      const response = await fetch(
-        `${import.meta.env.VITE_API_ENDPOINT}/video/tomp3`, {
-          method: 'POST',
-          body: formData,
-          credentials: 'include',
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_ENDPOINT}/video/tomp3`,
+        formData,
+        {
+          responseType: 'blob',
+          withCredentials: true,
+          onUploadProgress: (progressEvent) => {
+            if (progressEvent.total) {
+              const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+              setUploadProgress(percent);
+            }
+          }
         }
       );
 
-      console.log('forming blob')
-      const blob = await response.blob();
-
-      const url = window.URL.createObjectURL(blob)
-
+      const url = window.URL.createObjectURL(response.data);
       const link = document.createElement('a');
       link.href = url;
-
       const fileName = file.name.replace(/\.[^/.]+$/, "") + ".mp3";
       link.setAttribute('download', fileName);
       document.body.appendChild(link);
-      link.click()
-
+      link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(url)
+      window.URL.revokeObjectURL(url);
 
-      setSuccess(true)
-      setLoading(false)
+      setSuccess(true);
+      setLoading(false);
+      setUploadProgress(0);
     } catch (error) {
       setLoading(false);
-      setProgressMessage('');
+      setError('An error occurred during conversion.');
       setUploadProgress(0);
     }
-  
   };
 
   const getFileSize = (bytes) => {
@@ -128,7 +127,6 @@ function VideoConverter() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Header Section */}
       <div className="text-center mb-8">
         <div className="flex items-center justify-center space-x-3 mb-4">
           <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
@@ -150,12 +148,10 @@ function VideoConverter() {
         </div>
       </div>
 
-      {/* Main Converter Card */}
       <div className={`bg-white/10 backdrop-blur-md rounded-2xl border p-8 transition-all duration-300 ${
         success ? 'border-green-400/50 shadow-green-400/20' : 'border-white/20'
       } shadow-2xl`}>
         
-        {/* Powered By Badge */}
         <div className="flex justify-between items-center mb-6">
           <div className="text-xs text-white/60">
             Powered by: ConvertForYou
@@ -166,13 +162,11 @@ function VideoConverter() {
         </div>
 
         <div className="space-y-6">
-          {/* File Upload Section */}
           <div className="space-y-4">
             <label className="block text-white/80 text-sm font-medium">
               Select Video File
             </label>
             
-            {/* Custom File Upload Area */}
             <div className="relative">
               <input type="file" onChange={handleFileChange} name="fileInput" id="fileInput" accept="video/*" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"/>
               <div className={`border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 ${
@@ -200,14 +194,12 @@ function VideoConverter() {
               </div>
             </div>
 
-            {/* File Size Warning */}
             <div className="flex items-center space-x-3 p-3 bg-yellow-500/20 border border-yellow-400/30 rounded-lg">
               <FaExclamationTriangle className="w-4 h-4 text-yellow-400 flex-shrink-0" />
               <p className="text-yellow-300 text-sm font-medium">Maximum file size: 500MB</p>
             </div>
           </div>
 
-          {/* Format Selection */}
           {file && (
             <div className="space-y-4">
               <div className="flex flex-col md:flex-row gap-4 items-start md:items-end">
@@ -255,7 +247,6 @@ function VideoConverter() {
             </div>
           )}
 
-          {/* Video Preview */}
           {preview && (
             <div className="space-y-4">
               <label className="block text-white/80 text-sm font-medium">
@@ -280,7 +271,6 @@ function VideoConverter() {
             </div>
           )}
 
-          {/* Convert Button */}
           <button 
             onClick={convertVideo} 
             disabled={loading || !file || !toFormat}
@@ -299,7 +289,6 @@ function VideoConverter() {
             )}
           </button>
 
-          {/* Progress Section */}
           {loading && (
             <div className="space-y-3 p-4 bg-white/5 border border-white/20 rounded-xl">
               <div className="flex items-center space-x-3">
@@ -308,16 +297,16 @@ function VideoConverter() {
                 </div>
                 <div className="flex-1">
                   <p className="text-white font-medium">{progressMessage}</p>
-                  {uploadProgess > 0 && uploadProgess < 100 && (
+                  {uploadProgress > 0 && uploadProgress < 100 && (
                     <div className="mt-2">
                       <div className="flex justify-between text-sm text-white/60 mb-1">
                         <span>Upload Progress</span>
-                        <span>{uploadProgess}%</span>
+                        <span>{uploadProgress}%</span>
                       </div>
                       <div className="w-full bg-white/20 rounded-full h-2">
                         <div 
                           className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
-                          style={{ width: `${uploadProgess}%` }}
+                          style={{ width: `${uploadProgress}%` }}
                         ></div>
                       </div>
                     </div>
