@@ -32,7 +32,6 @@ function VideoConverter() {
     setToFormat('');
     setError('');
     setSuccess(false);
-    setUploadProgress(0);
     setProgressMessage('');
   };
 
@@ -86,9 +85,10 @@ function VideoConverter() {
 
       console.log('calling API')
       const response = await fetch(
-        `https://media-download-api.onrender.com/api/v1/video/tomp3`, {
+        `${import.meta.env.VITE_API_ENDPOINT}/video/tomp3`, {
           method: 'POST',
-          body: formData
+          body: formData,
+          credentials: 'include',
         }
       );
 

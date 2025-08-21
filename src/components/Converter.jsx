@@ -94,7 +94,7 @@ function Converter() {
           setYoutubeURL(null);
           setErrorMessage(' ')
     
-          const response = await fetch(`https://mdapi.xyz/api/v1/url/shorten`, {
+          const response = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/url/shorten`, {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -102,7 +102,8 @@ function Converter() {
             },
             body: JSON.stringify({
               url: longURL,
-            })
+            }),
+            credentials: 'include' 
           });
     
           const data = await response.json();
@@ -243,21 +244,15 @@ function Converter() {
           setErrorMessage(' ');
           setToFormat('')
 
-          const response = await axios.post("https://media-download-api.onrender.com/api/v1/soundcloud/downloadMp3", { link: soundCloudUrl }, {
-              responseType: 'blob' 
-          });
-          const title = await axios.post("https://media-download-api.onrender.com/api/v1/soundcloud/getTitle", { link: soundCloudUrl });
-
-          // const response = await axios.post("https://dev-media-download-api.onrender.com/api/soundcloud/downloadMp3", { link: soundCloudUrl }, {
-          //     responseType: 'blob' 
-          // });
-
-
-          // const response = await axios.post("http://localhost:5000/api/soundcloud/downloadMp3", { link: soundCloudUrl }, {
-          //     responseType: 'blob' 
-          // });
-
-          // const title = await axios.post("http://localhost:5000/api/soundcloud/getTitle", { link: soundCloudUrl });
+          const response = await axios.post(
+            `${import.meta.env.VITE_API_ENDPOINT}/soundcloud/downloadMp3`,
+            { link: soundCloudUrl },
+            {
+              responseType: 'blob',
+              withCredentials: true
+            }
+          );
+          const title = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/soundcloud/getTitle`, { link: soundCloudUrl}, { withCredentials: true });
 
           const blob = new Blob([response.data], { type: 'audio/mpeg' });
           const url = window.URL.createObjectURL(blob);
@@ -293,7 +288,7 @@ function Converter() {
         setErrorMessage(' ');
         setToFormat('')
 
-        const response = await axios.post('https://media-download-api.onrender.com/api/v1/spotify/playlistInfo', {link: spotifyLink});
+        const response = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/spotify/playlistInfo,`, {link: spotifyLink}, { withCredentials: true });
 
         const fileData = response.data
         const blob = new Blob([fileData], {type: 'text/plain'})
@@ -328,7 +323,7 @@ function Converter() {
         setErrorMessage(' ');
         setToFormat('')
         
-        const mdaResponse = await axios.post('https://media-download-api.onrender.com/api/v1/spotify/downloadMp3', {link: spotifyLink})
+        const mdaResponse = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/spotify/downloadMp3`, {link: spotifyLink}, { withCredentials: true });
         const videoId = mdaResponse.data;
 
         const options = {
