@@ -52,7 +52,6 @@ import MoonLoader from 'react-spinners/MoonLoader'
                     setUtilityHistory([]);
                     setData(data);
                     setLoading(false);
-                    console.log('No utility history found or empty array returned.');
                     return;
                 }
                 

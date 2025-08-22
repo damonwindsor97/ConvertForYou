@@ -2,12 +2,12 @@ import Navbar from "./Navbar"
 import Footer from "./Footer"
 import { Outlet } from "react-router-dom"
 import { useEffect, useState } from "react"  
+import { ToastContainer, toast } from 'react-toastify';
 
 function Layout() {
   const [tokenReady, setTokenReady] = useState(false); 
 
   useEffect(() => {
-    console.log('Layout: Starting token fetch...');
     
     fetch(`${import.meta.env.VITE_API_ENDPOINT}/server/token`, {
       method: 'GET',
@@ -19,7 +19,7 @@ function Layout() {
     })
     .then(response => {
       if (!response.ok) {
-        console.error('Layout: Failed to get token:', response.status);
+        toast.error(`Failed to get token - refresh page, then contact support if issue persists.`);
         setTokenReady(true); 
         return null;
       }
@@ -27,9 +27,9 @@ function Layout() {
     })
     .then(data => {
       if (data) {
-        console.log('Layout: Token response:', data);
+        toast.success('Guest user logged in!');
       }
-      console.log('Layout: Setting tokenReady to true');
+
       setTokenReady(true);
     })
     .catch(error => {
@@ -49,6 +49,7 @@ function Layout() {
         <div className="">
             <Footer/>
         </div>
+        <ToastContainer position="top-right" autoClose={4000} />
     </div>
   )
 }
