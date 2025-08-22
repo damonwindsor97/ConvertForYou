@@ -316,9 +316,7 @@ function VideoConverter() {
             </div>
           )}
 
-          {/* Status Messages */}
           <div className="space-y-4">
-            {/* Error Message */}
             {error && (
               <div className="flex items-center space-x-3 p-4 bg-red-500/20 border border-red-400/30 rounded-xl">
                 <FaExclamationTriangle className="w-5 h-5 text-red-400 flex-shrink-0" />
@@ -329,7 +327,6 @@ function VideoConverter() {
               </div>
             )}
 
-            {/* Success Message */}
             {success && (
               <div className="flex items-center space-x-3 p-4 bg-green-500/20 border border-green-400/30 rounded-xl">
                 <FaCheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
@@ -341,7 +338,6 @@ function VideoConverter() {
             )}
           </div>
 
-          {/* Processing Info */}
           <div className="bg-white/5 rounded-xl p-4 border border-white/10">
             <div className="flex items-center space-x-3 mb-3">
               <FaServer className="w-5 h-5 text-purple-400" />

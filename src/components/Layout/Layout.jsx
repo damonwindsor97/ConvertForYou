@@ -5,7 +5,7 @@ import { useEffect } from "react"
 
 function Layout() {
 
-  useEffect(() =>{
+  useEffect(() => {
     fetch(`${import.meta.env.VITE_API_ENDPOINT}/server/token`, {
       method: 'GET',
       credentials: 'include',
@@ -14,6 +14,18 @@ function Layout() {
         'Accept': 'application/json'
       }
     })
+    .then(response => {
+      if (!response.ok) {
+        console.error('Failed to get token:', response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Token response:', data);
+    })
+    .catch(error => {
+      console.error('Token fetch error:', error);
+    });
   }, [])
 
   return (

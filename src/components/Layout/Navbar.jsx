@@ -109,7 +109,6 @@ import MoonLoader from 'react-spinners/MoonLoader'
                     </div>
                 </Link>
                 
-                {/* Navigation Links */}
                 <div className='hidden md:flex items-center space-x-2'>
                     <Link 
                         to="https://discord.gg/9ytVAPNtmz" 
@@ -120,7 +119,6 @@ import MoonLoader from 'react-spinners/MoonLoader'
                 </div>
             </div>
 
-            {/* History Button */}
             <button onClick={handleOpen} className="group relative bg-white/5 hover:bg-white/15 border border-white/20 hover:border-purple-400/50 rounded-xl px-4 py-3 text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl backdrop-blur-sm" aria-label="View utility history">
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
@@ -133,14 +131,9 @@ import MoonLoader from 'react-spinners/MoonLoader'
                 </div>
             </button>
 
-            {/* History Modal */}
-            <Modal open={open} onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
+            <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
                 <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-900/95 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl w-[90vw] md:w-[700px] max-h-[80vh] overflow-hidden">
 
-                    {/* Modal Header */}
                     <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border-b border-white/20 p-6">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
@@ -152,10 +145,7 @@ import MoonLoader from 'react-spinners/MoonLoader'
                                     <p className="text-white/60 text-sm">Your recent conversions</p>
                                 </div>
                             </div>
-                            <button 
-                                onClick={handleClose}
-                                className="text-white/60 hover:text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
-                            >
+                            <button onClick={handleClose} className="text-white/60 hover:text-white p-2 hover:bg-white/10 rounded-lg transition-colors">
                                 ✕
                             </button>
                         </div>
