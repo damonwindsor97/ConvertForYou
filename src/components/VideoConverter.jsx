@@ -15,7 +15,8 @@ function VideoConverter() {
   const [toFormat, setToFormat] = useState('');
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState(false);
 
   const [uploadProgress, setUploadProgress] = useState(0); 
@@ -32,7 +33,8 @@ function VideoConverter() {
     setPreview('');
     setFromFormat('');
     setToFormat('');
-    setError('');
+    setError(false);
+    setErrorMessage('');
     setSuccess(false);
     setProgressMessage('');
   };
@@ -51,9 +53,11 @@ function VideoConverter() {
         setFile(selectedFile)
         setFromFormat(fileType)
         setPreview(URL.createObjectURL(selectedFile));
-        setError('')
+        setErrorMessage('')
+        setError(false)
       } else {
-        setError('File type is not supported.');
+        setErrorMessage('File type is not supported.');
+        setError(true)
         setFile(null);
         setPreview('');
         setFromFormat('');
@@ -63,13 +67,13 @@ function VideoConverter() {
 
   const convertVideo = async () => {
     if (!file || !toFormat){
-      setError("Please select a file and format.");
+      setErrorMessage("Please select a file and format.");
       alert("Please select a file and format.");
       return;
     }
 
     if (file.size > 509715200) {
-      setError("File size exceeds 500MB limit");
+      setErrorMessage("File size exceeds 500MB limit");
       return;
     }
 
@@ -112,7 +116,8 @@ function VideoConverter() {
       setUploadProgress(0);
     } catch (error) {
       setLoading(false);
-      setError('An error occurred during conversion.');
+      setError(true);
+      setErrorMessage(error.message || 'An error occurred while converting the video.');
       setUploadProgress(0);
     }
   };

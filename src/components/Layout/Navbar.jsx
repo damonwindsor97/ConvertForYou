@@ -6,12 +6,12 @@ import { Modal, Box } from '@mui/material';
 import { HiLink, HiVideoCamera, HiMusicNote } from 'react-icons/hi';
 import { MdAudiotrack, MdFormatListBulleted } from 'react-icons/md';
 import { FaClock } from "react-icons/fa6";
-import { FaHistory,FaBolt } from "react-icons/fa";
+import { FaHistory,FaBolt, FaServer } from "react-icons/fa";
 import { RiFilePaper2Fill } from "react-icons/ri";
 import { BiSupport } from "react-icons/bi";
 import MoonLoader from 'react-spinners/MoonLoader'
 
- function Navbar() {
+ function Navbar({ tokenReady}) {
   const [open, setOpen] = useState(false);
   const [utilityHistory, setUtilityHistory] = useState([]);
   const [data, setData] = useState()
@@ -31,9 +31,14 @@ import MoonLoader from 'react-spinners/MoonLoader'
     };
 
     useEffect(() => {
+        if (!tokenReady) {
+            return;
+        }
+        
         const fetchHistory = async () => {
             try {
                 setLoading(true)
+
                 const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/server/anonUtilHistory`, {
                     method: 'GET',
                     headers: {
@@ -47,7 +52,8 @@ import MoonLoader from 'react-spinners/MoonLoader'
                     setUtilityHistory([]);
                     setData(data);
                     setLoading(false);
-                    return
+                    console.log('No utility history found or empty array returned.');
+                    return;
                 }
                 
                 setUtilityHistory(data.utilityHistory || []);
@@ -59,8 +65,9 @@ import MoonLoader from 'react-spinners/MoonLoader'
         };
 
         fetchHistory();
-    }, []); 
-    // Helper function to get icon for each utility type
+    }, [tokenReady]); 
+
+    
     const getUtilityIcon = (type) => {
         const iconClass = "w-4 h-4 mr-2";
         switch (type) {
@@ -81,7 +88,6 @@ import MoonLoader from 'react-spinners/MoonLoader'
         }
     };
 
-    // Helper function to truncate long URLs
     const truncateUrl = (url, maxLength = 50) => {
     if (!url || url.length <= maxLength) return url;
     return url.substring(0, maxLength) + '...';

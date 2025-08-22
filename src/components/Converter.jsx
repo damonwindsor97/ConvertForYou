@@ -117,9 +117,9 @@ function Converter() {
             throw new Error("Unable to process, please try again");
           }
         } catch (error) {
-          console.error("Error:", error);
           setLoading(false);
-          setError(error);
+          setErrorMessage(error.message || 'An error occurred')
+          setError(true);
           setSuccess(false)
         }
     };
@@ -150,7 +150,7 @@ function Converter() {
   
         try {
           setLoading(true)
-          setError(false)
+          setError('')
           setSuccess(false)
           setSoundcloudUrl(null)
           setTinyURL(null)
@@ -172,7 +172,8 @@ function Converter() {
           setYoutubeURL(null)
         } catch (error) {
           setLoading(false)
-          setError(error)
+          setErrorMessage(error.message || 'An error occurred')
+          setError(true);
         }
       } else if (toFormat === "mp4") {
         try {
@@ -221,7 +222,8 @@ function Converter() {
           setLoading(false);
         } catch (error) {
           setLoading(false);
-          setError(error);
+          setErrorMessage(error.message || 'An error occurred')
+          setError(true);
         }
       }
     };
@@ -268,8 +270,8 @@ function Converter() {
           setLoading(false);
       } catch (error) {
           setErrorMessage(error.message || 'An error occurred')
-          setLoading(false);
           setError(true);
+          setLoading(false);
       }
 
     };
