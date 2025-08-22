@@ -41,7 +41,6 @@ import MoonLoader from 'react-spinners/MoonLoader'
                     },
                     withCredentials: true,
                 });
-
                 const data = response.data;
 
                 if(!data.utilityHistory || data.utilityHistory.length === 0) {
@@ -114,8 +113,7 @@ import MoonLoader from 'react-spinners/MoonLoader'
                 <div className='hidden md:flex items-center space-x-2'>
                     <Link 
                         to="https://discord.gg/9ytVAPNtmz" 
-                        className='group flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 border border-transparent hover:border-white/20'
-                    >
+                        className='group flex items-center space-x-2 px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-300 border border-transparent hover:border-white/20'>
                         <BiSupport className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
                         <span className="font-medium">Support</span>
                     </Link>
@@ -123,11 +121,7 @@ import MoonLoader from 'react-spinners/MoonLoader'
             </div>
 
             {/* History Button */}
-            <button 
-                onClick={handleOpen} 
-                className="group relative bg-white/5 hover:bg-white/15 border border-white/20 hover:border-purple-400/50 rounded-xl px-4 py-3 text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl backdrop-blur-sm"
-                aria-label="View utility history"
-            >
+            <button onClick={handleOpen} className="group relative bg-white/5 hover:bg-white/15 border border-white/20 hover:border-purple-400/50 rounded-xl px-4 py-3 text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl backdrop-blur-sm" aria-label="View utility history">
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
                         <FaHistory className="w-4 h-4 text-white" />
@@ -140,9 +134,7 @@ import MoonLoader from 'react-spinners/MoonLoader'
             </button>
 
             {/* History Modal */}
-            <Modal
-                open={open}
-                onClose={handleClose}
+            <Modal open={open} onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -168,14 +160,12 @@ import MoonLoader from 'react-spinners/MoonLoader'
                             </button>
                         </div>
                         
-                        {/* Expiry Warning */}
                         <div className="mt-4 flex items-center gap-3 text-sm font-medium p-4 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-400/30 rounded-xl text-red-300 backdrop-blur-sm">
                             <FaClock className="w-4 h-4 flex-shrink-0" />
                             <span>History expires: {formatDate(data ? data.expiresAt : '...')}</span>
                         </div>
                     </div>
 
-                    {/* Modal Content */}
                     <div className="overflow-y-auto max-h-[calc(80vh-180px)] scroll-smooth">
                         {loading ? (
                             <div className="flex items-center justify-center py-12">
