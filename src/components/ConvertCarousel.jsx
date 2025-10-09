@@ -58,8 +58,7 @@ function ConvertCarousel() {
 
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">Convert Anything,<span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> Instantly</span></h1>
-        <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">Choose your conversion type and transform your files with lightning speed. 
-          Secure, fast, and completely free.</p>
+        <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">Choose your conversion type and transform your files with lightning speed. Secure, fast, and completely free.</p>
       </div>
 
 
@@ -72,7 +71,7 @@ function ConvertCarousel() {
             const isActive = activeTab === tab.id;
             
             return (
-              <button key={tab.id} role="tab" aria-selected={isActive} aria-controls={tab.id} id={`tab-${index + 1}`} tabIndex={isActive ? "0" : "-1"} className="relative tab h-12 px-6 md:px-8 rounded-xl transition-all duration-300 ease-out group" onClick={() => setActiveTab(tab.id)} >
+              <button key={tab.id} role="tab" aria-selected={isActive} aria-controls={tab.id} id={`tab-${index + 1}`} tabIndex={isActive ? "0" : "-1"} className="text-xs md:text-base relative tab h-12 px-4 sm:px-6 md:px-8 rounded-xl transition-all duration-300 ease-out group" onClick={() => setActiveTab(tab.id)} >
                 <div className="flex items-center space-x-3">
                   <Icon className={`w-5 h-5 transition-all duration-300 ${isActive ? 'text-white scale-110' : 'text-white/70 group-hover:text-white group-hover:scale-105'}`} />
                   <span className={`font-semibold transition-all duration-300 whitespace-nowrap ${isActive ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
@@ -85,7 +84,7 @@ function ConvertCarousel() {
         </div>
       </div>
 
-      {/* Tab Description */}
+
       <div className="text-center mb-8">
         {tabs.map(tab => (
           activeTab === tab.id && (
@@ -122,7 +121,7 @@ function ConvertCarousel() {
         </div>
       </div>
 
-      {/* Trust Indicators */}
+
       <div className="flex justify-center items-center space-x-8 text-white/60 mt-8">
         <div className="flex items-center space-x-2">
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -137,7 +136,6 @@ function ConvertCarousel() {
           <span className="text-sm font-medium">No Registration</span>
         </div>
       </div>
-
 
     </div>
   );

@@ -16,7 +16,7 @@ function Home() {
         />
         <meta name="author" content="Damon Windsor" />
       </Helmet>
-      <div className="mt-[22vh]">
+      <div className="mt-[10vh] sm:mt-[15vh] md:mt-[20vh]">
         <ConvertCarousel/>
       </div>
 
