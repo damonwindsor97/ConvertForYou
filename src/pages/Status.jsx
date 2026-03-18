@@ -207,7 +207,7 @@ export default function StatusPage() {
             </div>
             <div className="space-y-3">
               <p className="text-white/70 text-sm">Experiencing issues with our services? Our support team is here to help.</p>
-              <a href="mailto:support@convertforyou.com" className="inline-flex items-center space-x-2 text-blue-300 hover:text-blue-200 underline decoration-blue-300/50 hover:decoration-blue-200 transition-colors text-sm"><span>support@convertforyou.com</span></a>
+              <a href="mailto:support@convertforyou.com" className="inline-flex items-center space-x-2 text-blue-300 hover:text-blue-200 underline decoration-blue-300/50 hover:decoration-blue-200 transition-colors text-sm"><span>Join Discord</span></a>
             </div>
           </div>
         </div>
@@ -215,7 +215,7 @@ export default function StatusPage() {
 
         <div className="text-center">
           <div className="bg-white/5 rounded-xl p-4 border border-white/10 inline-block">
-            <p className="text-white/60 text-sm">Last updated: <span className="text-white font-semibold">20/08/25 12:08am AEST</span></p>
+            <p className="text-white/60 text-sm">Last updated: <span className="text-white font-semibold">19/01/26 1:24am AEST</span></p>
           </div>
         </div>
       </div>
