@@ -544,6 +544,23 @@ function Converter() {
                 </div>
               )}
 
+              {selectedUtility === 60 && (
+                <div className="flex items-center space-x-3 p-4 bg-yellow-500/20 border border-yellow-400/30 rounded-xl">
+                  <FaExclamationTriangle className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                  <div>
+                    <p className="text-yellow-300 font-bold">Due to changes within Spotify, our services are unavailable at this time.</p>
+                  </div>
+                </div>
+              )}
+              {selectedUtility === 50 && (
+                <div className="flex items-center space-x-3 p-4 bg-yellow-500/20 border border-yellow-400/30 rounded-xl">
+                  <FaExclamationTriangle className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                  <div>
+                    <p className="text-yellow-300 font-bold">Due to changes within Spotify, our services are unavailable at this time.</p>
+                  </div>
+                </div>
+              )}
+
               {error && (
                 <div className="flex items-center space-x-3 p-4 bg-red-500/20 border border-red-400/30 rounded-xl">
                   <FaExclamationTriangle className="w-5 h-5 text-red-400 flex-shrink-0" />
