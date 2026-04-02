@@ -176,58 +176,62 @@ function Converter() {
           setError(true);
         }
       } else if (toFormat === "mp4") {
+        const youtubeUrl = document.getElementById("linkInput").value;
+      
+        const videoId = youtubeUrl.includes('youtube.com') || youtubeUrl.includes('youtu.be') 
+            ? extractYoutubeId(youtubeUrl) : youtubeUrl;
+  
+        const options = {
+          method: 'GET',
+          url: `https://youtube-video-fast-downloader-24-7.p.rapidapi.com/download_video/${videoId}`,
+          params: {quality: '22'},
+          headers: {
+            'x-rapidapi-key': import.meta.env.VITE_YOUTUBE_MP4_API_KEY,
+            'x-rapidapi-host': import.meta.env.VITE_YOUTUBE_MP4_API_HOST,
+                'Content-Type': 'application/json'
+          }
+        };
+  
         try {
-          setLoading(true);
-          setError(false);
-          setSuccess(false);
-          setSoundcloudUrl(null);
-          setTinyURL(null);
+          setLoading(true)
+          setError('')
+          setSuccess(false)
+          setSoundcloudUrl(null)
+          setTinyURL(null)
           setYoutubeURL(null);
-          setErrorMessage(" ");
-          setToFormat("");
+          setErrorMessage(' ');
     
-          const response = await fetch(
-            `${import.meta.env.VITE_API_ENDPOINT}/youtube/downloadMp4`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                link: youtubeUrl,
-              }),
-            }
-          );
-    
+          const response = await axios.request(options);
+          const downloadUrl = response.data.file;
 
-          const contentDisposition = response.headers.get('Content-Disposition');
-
-          const filenameMatch = contentDisposition?.match(/filename="(.+)"/);
-          const filename = filenameMatch ? filenameMatch[1] : 'converted-video.mp4';
-
-          const blob = await response.blob();
-          const url = window.URL.createObjectURL(blob);
-
-          const link = document.createElement("a");
-          link.href = url;
-          // Use the video title in the download
-          link.setAttribute("download", filename);
+          const link = document.createElement('a');
+          link.href = downloadUrl;
+          link.setAttribute('download', 'video.mp4');
           document.body.appendChild(link);
           link.click();
-    
           document.body.removeChild(link);
-          window.URL.revokeObjectURL(url);
-    
-          setSuccess(true);
-          setLoading(false);
+
+          // const videoResponse = await axios.get(downloadUrl, { responseType: 'blob' });
+          // const blobUrl = URL.createObjectURL(videoResponse.data);
+
+          // const link = document.createElement('a');
+          // link.href = blobUrl;
+          // link.setAttribute('download', 'video.mp4');
+          // document.body.appendChild(link);
+          // link.click();
+          // document.body.removeChild(link);
+          // URL.revokeObjectURL(blobUrl);
+  
+          setSuccess(true)
+          setLoading(false)
+          setYoutubeURL(null)
         } catch (error) {
-          setLoading(false);
+          setLoading(false)
           setErrorMessage(error.message || 'An error occurred')
           setError(true);
         }
-      }
     };
-
+  };
 
     const convertSoundcloudToMp3 = async () => {
       const soundCloudUrl = document.getElementById("linkInput").value;
@@ -312,51 +316,43 @@ function Converter() {
     };
 
     const spotifyDownload = async () => {
-      const spotifyLink = document.getElementById('linkInput').value;
+        const spotifyLink = document.getElementById('linkInput').value;
 
-      
-      try {
-        setLoading(true);
-        setError(false);
-        setSuccess(false);
-        setSoundcloudUrl(false)
-        setTinyURL(null)
-        setYoutubeURL(null);
-        setErrorMessage(' ');
-        setToFormat('')
-        
-        const mdaResponse = await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/spotify/downloadMp3`, {link: spotifyLink}, { withCredentials: true });
-        const videoId = mdaResponse.data;
+        try {
+            setLoading(true);
+            setError(false);
+            setSuccess(false);
+            setSoundcloudUrl(false);
+            setTinyURL(null);
+            setYoutubeURL(null);
+            setErrorMessage(' ');
+            setToFormat('');
 
-        const options = {
-            method: 'GET',
-            url: 'https://youtube-mp36.p.rapidapi.com/dl',
-            params: { id: videoId }, 
-            headers: {
-                'x-rapidapi-key': import.meta.env.VITE_YOUTUBE_MP3_API_KEY,
-                'x-rapidapi-host': import.meta.env.VITE_YOUTUBE_MP3_API_HOST
-            }
-        };
-        
-          const response = await axios.request(options);
-          console.log(response);
-  
-          const link = document.createElement('a');
-          link.href = response.data.link;
-          link.setAttribute('download', `${response.data.title}.m4a`);
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link)
-  
-          setSuccess(true)
-          setLoading(false)
-          setYoutubeURL(null)
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_ENDPOINT}/spotify/downloadMp3`,
+                { link: spotifyLink },
+                { withCredentials: true, responseType: 'blob' } 
+            );
 
-      } catch (error) {
-          setLoading(false)
-          setError(error)
-      }
-    }
+            const blobUrl = URL.createObjectURL(new Blob([response.data], { type: 'audio/mpeg' }));
+            const filename = response.headers['x-filename'] || 'track.mp3';
+
+            const link = document.createElement('a');
+            link.href = blobUrl;
+            link.setAttribute('download', filename);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(blobUrl);
+
+            setSuccess(true);
+            setLoading(false);
+
+        } catch (error) {
+            setLoading(false);
+            setError(error);
+        }
+    };
 
     const getUtilityName = () => {
       switch (selectedUtility) {
@@ -474,7 +470,7 @@ function Converter() {
                               <span>.mp3</span>
                             </div>
                           </Option>
-                          <Option value="mp4" className="p-3 cursor-not-allowed opacity-50">
+                          <Option value="mp4" className="p-3 opacity-50">
                             <div className="flex items-center space-x-2">
                               <MdCloudDownload className="w-4 h-4 text-red-400" />
                               <span>.mp4 (disabled)</span>
